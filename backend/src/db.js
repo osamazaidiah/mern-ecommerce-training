@@ -1,10 +1,14 @@
 import { MongoClient } from "mongodb";
+import * as dotenv from "dotenv";
+
+dotenv.config();
 
 let client;
 
-const dbURI = "";
+const dbURI = process.env.MONGODB_URI || "";
 
 export const initializeDbConnection = async () => {
+  if (!dbURI) console.log("Unable to access dbUri...");
   client = await MongoClient.connect(dbURI, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
