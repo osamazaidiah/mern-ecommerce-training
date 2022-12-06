@@ -1,4 +1,5 @@
 import { getDbConnection } from "../db";
+import bcrypt from "bcrypt";
 
 export const signUpRoute = {
   path: "/api/signup",
@@ -10,13 +11,18 @@ export const signUpRoute = {
     const { email, password } = req.body;
     if (!email || !password) return res.sendStatus(500);
 
-    // Debug Log
-    console.log(`Email: ${email}, password: ${password}`);
+    const saltRounds = 10;
+    const salt = await bcrypt.genSalt(saltRounds);
+    const passwordHash = await bcrypt.hash(password, salt);
+
+    // // Debug Log
+    // console.log(`Password:${password}\nSalt: ${salt}\nHash:${hash}`);
+    // console.log(`Email: ${email}, password: ${password}`);
 
     const db = getDbConnection("ecommerce");
     const result = await db.collection("users").insertOne({
       email,
-      password,
+      passwordHash,
     });
 
     if (!result) return res.sendStatus(500);
