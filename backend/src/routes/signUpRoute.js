@@ -1,5 +1,7 @@
 import { getDbConnection } from "../db";
 import bcrypt from "bcrypt";
+import jwt from "jsonwebtoken";
+import * as dotenv from "dotenv";
 
 export const signUpRoute = {
   path: "/api/signup",
@@ -29,7 +31,20 @@ export const signUpRoute = {
 
     const { insertedId } = result;
 
-    console.log(`InsertedId: ${insertedId}`);
-    return res.sendStatus(200);
+    dotenv.config();
+
+    jwt.sign(
+      { uid: insertedId, email },
+      process.env.JWT_SECRET,
+      { expiresIn: "2d" },
+      (error, token) => {
+        if (error) {
+          console.log("Error generating jwt token:\n", error);
+          return res.status(500).send(error);
+        }
+
+        return res.status(200).json({ token });
+      }
+    );
   },
 };
