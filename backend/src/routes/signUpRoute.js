@@ -7,10 +7,14 @@ export const signUpRoute = {
   method: "post",
   handler: async (req, res) => {
     // Debug Log
-    console.log("Received a POST request on /api/signup");
+    // console.log("Received a POST request on /api/signup");
 
-    const { email, password } = req.body;
-    if (!email || !password) return res.sendStatus(500);
+    const { email, firstName, lastName, location, password } = req.body;
+    if (!email || !password || !firstName || !lastName || !location)
+      return res.sendStatus(500);
+
+    const user = await db.collection("users").findOne({ email });
+    if (user) return res.sendStatus(409);
 
     const saltRounds = 10;
     const salt = await bcrypt.genSalt(saltRounds);

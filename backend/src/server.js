@@ -10,7 +10,6 @@ const app = express();
 app.use(express.json());
 
 app.get("/ping", (req, res) => {
-  console.log("Received a ping... responding with a pong...");
   res.send("PONG back at you... 😊");
 });
 
