@@ -22,7 +22,7 @@ export const ProductCard = ({ product }) => {
     >
       <Image src={imageSource} title={title} alt={alt} />
       <h3>{title}</h3>
-      <Row justifyContent="space-between">
+      <Row>
         <h4>${price}</h4>
         <p style={{ color: "red", fontStyle: "italic" }}>
           {availability ? "" : "Out of Stock"}

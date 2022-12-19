@@ -31,7 +31,7 @@ export const Modal = ({ children, setVisibility }) => {
           padding: "16px",
         }}
       >
-        <Row justifyContent="flex-end">
+        <Row style={{ justifyContent: "flex-end" }}>
           <button onClick={() => setVisibility(false)}>✖</button>
         </Row>
         {children}

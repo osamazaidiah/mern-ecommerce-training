@@ -1,4 +1,4 @@
-export const Row = ({ justifyContent, style, children }) => {
+export const Row = ({ children, style }) => {
   return (
     <div
       style={{
@@ -6,7 +6,7 @@ export const Row = ({ justifyContent, style, children }) => {
         flexDirection: "row",
         gap: "8px",
         flexWrap: "wrap",
-        justifyContent: justifyContent,
+        justifyContent: "space-between",
         alignItems: "center",
         ...style,
       }}

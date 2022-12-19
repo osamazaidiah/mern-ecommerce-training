@@ -1,7 +1,7 @@
 import { Row } from "./Row";
 export const InputField = ({ label, value, setValue, type = "text" }) => {
   return (
-    <Row justifyContent="space-between">
+    <Row>
       <label htmlFor="textInput" style={{ flex: 1 }}>
         {label}
       </label>

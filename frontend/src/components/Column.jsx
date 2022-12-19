@@ -1,11 +1,11 @@
-export const Column = ({ justifyContent = "flex-start", style, children }) => {
+export const Column = ({ children, style }) => {
   return (
     <div
       style={{
         display: "flex",
         flexDirection: "column",
         gap: "8px",
-        justifyContent: justifyContent,
+        justifyContent: "flex-start",
         ...style,
       }}
     >

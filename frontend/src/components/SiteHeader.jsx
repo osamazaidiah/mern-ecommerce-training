@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { Row } from "./Row";
 import { Column } from "./Column";
 import { SignUp } from "./SignUp";
@@ -10,7 +9,7 @@ export const SiteHeader = () => {
   const navigate = useNavigate();
   return (
     <Column>
-      <Row justifyContent="space-between">
+      <Row>
         <Column>
           <h1 onClick={() => navigate("/")} style={{ cursor: "pointer" }}>
             Ecommerce App
