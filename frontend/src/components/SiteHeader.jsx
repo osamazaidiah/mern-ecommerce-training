@@ -4,8 +4,11 @@ import { SignUp } from "./SignUp";
 import { ViewCart } from "./ViewCart";
 import { useNavigate } from "react-router-dom";
 import { LogIn } from "./LogIn";
+import { useContext } from "react";
+import { CurrentUserContext } from "../context/CurrentUserProvider";
 
 export const SiteHeader = () => {
+  const [user, token, setToken] = useContext(CurrentUserContext);
   const navigate = useNavigate();
   return (
     <Column>
@@ -17,8 +20,21 @@ export const SiteHeader = () => {
         </Column>
         <Row>
           <ViewCart />
-          <SignUp />
-          <LogIn />
+          {user ? (
+            <button
+              onClick={() => {
+                localStorage.removeItem("token");
+                setToken(() => null);
+              }}
+            >
+              Sign Out
+            </button>
+          ) : (
+            <>
+              <SignUp />
+              <LogIn />
+            </>
+          )}
         </Row>
       </Row>
     </Column>

@@ -1,11 +1,8 @@
-import { Column } from "./Column";
+import { useContext } from "react";
+import { CurrentUserContext } from "../context/CurrentUserProvider";
+
 export const UserInfo = () => {
-  return (
-    <Column style={{ alignItems: "flex-start" }}>
-      <h2>Customer Information:</h2>
-      <p>Osama Jamal</p>
-      <p>test@test.com</p>
-      <p>Jordan</p>
-    </Column>
-  );
+  const [user] = useContext(CurrentUserContext);
+
+  return <>{user ? <p>Hello, {user.firstName}</p> : <p>Unknown user</p>}</>;
 };
