@@ -8,10 +8,12 @@ export const CurrentUserProvider = ({ children }) => {
   const [token, setToken] = useToken();
 
   const [currentUser, setCurrentUser] = useState(() => {
-    if (token) {
+    if (!token) return null;
+    try {
       return jwtDecode(token);
-    } else {
-      return null;
+    } catch (e) {
+      console.log("Error decoding token", e);
+      setToken(() => null);
     }
   });
 

@@ -15,7 +15,7 @@ export const signInRoute = {
     const user = await db.collection("users").findOne({ email });
     if (!user) return res.status(400).json({ message: "unable to sign in..." });
 
-    const { passwordHash, uid } = user;
+    const { passwordHash, _id: uid, firstName, lastName, location } = user;
 
     const isCorrect = await bcrypt.compare(password, passwordHash);
 
@@ -23,7 +23,7 @@ export const signInRoute = {
       return res.status(400).json({ message: "Unable to sign in..." });
 
     jwt.sign(
-      { uid, email },
+      { uid, email, firstName, lastName, location },
       process.env.JWT_SECRET,
       { expiresIn: "2d" },
       (error, token) => {

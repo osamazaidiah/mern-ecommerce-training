@@ -36,10 +36,10 @@ export const signUpRoute = {
 
     if (!result) return res.sendStatus(500);
 
-    const { insertedId } = result;
+    const { insertedId: uid } = result;
 
     jwt.sign(
-      { email, firstName, lastName, insertedId },
+      { email, firstName, lastName, uid },
       process.env.JWT_SECRET,
       { expiresIn: "2d" },
       (error, token) => {

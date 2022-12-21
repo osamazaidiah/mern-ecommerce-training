@@ -21,14 +21,17 @@ export const SiteHeader = () => {
         <Row>
           <ViewCart />
           {user ? (
-            <button
-              onClick={() => {
-                localStorage.removeItem("token");
-                setToken(() => null);
-              }}
-            >
-              Sign Out
-            </button>
+            <>
+              <button onClick={() => navigate("/orders")}>View Orders</button>
+              <button
+                onClick={() => {
+                  setToken(() => null);
+                  localStorage.removeItem("token");
+                }}
+              >
+                Sign Out
+              </button>
+            </>
           ) : (
             <>
               <SignUp />

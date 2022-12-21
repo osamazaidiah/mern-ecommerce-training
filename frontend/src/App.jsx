@@ -4,6 +4,7 @@ import { Column } from "./components/Column";
 import { Main } from "./pages/Main";
 import { SiteHeader } from "./components/SiteHeader";
 import { CheckOut } from "./pages/CheckOut";
+import { ViewOrders } from "./pages/ViewOrders";
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Main />} />
           <Route path="/check-out" element={<CheckOut />} />
+          <Route path="/orders" element={<ViewOrders />} />
         </Routes>
       </Router>
     </Column>
