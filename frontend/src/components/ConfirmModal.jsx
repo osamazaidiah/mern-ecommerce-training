@@ -24,7 +24,7 @@ export const ConfirmModal = ({ setIsConfirmed, label }) => {
                 onClick={async () => {
                   console.log(user);
                   try {
-                    const response = await axios.post(
+                    await axios.post(
                       "http://localhost:8080/api/place-order",
                       { ...user, cartItems },
                       { headers: { authorization: `Bearer ${token}` } }
